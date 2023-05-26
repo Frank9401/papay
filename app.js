@@ -1,7 +1,8 @@
 // module.exports = app;
 console.log("Web Server boshlash");
 const express = require("express");
-const app = express() ;
+const app = express();
+const router = require ("./router");
 
 
 //Mongo DB chaqirish
@@ -19,5 +20,8 @@ app.set("views", "views");
 app.set("view engine","ejs");
 
 // 4 Routing code
+
+app.use("/", router);
+
 
 module.exports = app;
