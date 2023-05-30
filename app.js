@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended:true})); //html forumdan request qiladi
 //3 BSSR -backend serverside render  VIEWS ga bogliq kodlar
 app.set("views", "views");
 app.set("view engine","ejs");
-
+ 
 // 4 Routing code
 
 app.use("/", router);
