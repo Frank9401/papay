@@ -6,8 +6,8 @@ const router = require ("./router");
 
 
 //Mongo DB chaqirish
-const db = require("./server").db();
-const mongodb =require("mongodb");
+// const db = require("./server").db();
+// const mongodb = require("mongodb");
 
 
 // 1 express ga kirib kelyatgan malumotlarga bogliq bolgan kodlar yoziladi. KIRISH kodlari
