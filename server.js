@@ -4,6 +4,7 @@ dotenv.config();
 
 const http = require("http")
 const mongoose = require("mongoose");
+mongoose.set('strictQuery', true);
 
 // let db;
 const connectionString =  process.env.MONGO_URL;
@@ -27,6 +28,6 @@ mongoose.connect(connectionString, {
         `The server is running succesfully on port : ${PORT}, http://localhost:${PORT}`
         );
     });
-}
+};
 } );
    

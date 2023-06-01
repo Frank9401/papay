@@ -21,7 +21,8 @@ app.set("view engine","ejs");
  
 // 4 Routing code
 
-app.use("/", router);
+app.use("/", router);              // React
+//app.use("/resto", router_bssr);   //annaviy usul
 
 
 module.exports = app;
