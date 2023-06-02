@@ -2,11 +2,6 @@ const Member = require ("../models/Member");
 
 let memberController = module.exports;
 
-// memberController.home = (req, res) => {
-//     console.log("GET cont.home");
-//     res.send("home sahifadasiz");
-// };
-
 memberController.signup = async (req, res) => {
     try {
         console.log('POST: cont/signup');

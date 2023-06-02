@@ -2,9 +2,12 @@ const express = require("express");
 const router = express.Router();
 const memberController = require("./controllers/memberController");
 
-// router.get("/", function (req,res) {
-//     res.send("home sahifasidasiz");
-// });
+
+
+/**********************************************
+ *           REST API                         *
+ **********************************************/
+
 
 //memberga dahldor routerlar
 // router.get("./", memberController.home);
