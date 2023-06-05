@@ -2,6 +2,23 @@ const Member = require ("../models/Member");
 
 let restaurantController = module.exports;
 
+
+restaurantController.getMyRestaurantData = async (req, res) =>{
+    try {
+        console.log("GET: cont/getMyRestaurantData");
+        // res.render("signup");
+
+        //TODO  Get my restaurant products
+
+        res.render('restaurant-menu')
+    } catch(err) {
+        console.log(`ERROR, cont/getMyRestaurantData, ${err.message}`);
+        res.json({state: "fail", message: err.message});
+    }
+};
+
+
+
 restaurantController.getSignupMyRestaurant = async (req, res) =>{
     try {
         console.log("GET: cont/getSignupMyRestaurant");
@@ -10,7 +27,7 @@ restaurantController.getSignupMyRestaurant = async (req, res) =>{
         console.log(`ERROR, cont/getSignupMyRestaurant, ${err.message}`);
         res.json({state: "fail", message: err.message});
     }
-}
+};
 
 restaurantController.signupProcess = async (req, res) => {
     try {
@@ -20,12 +37,11 @@ restaurantController.signupProcess = async (req, res) => {
         member = new Member(),
         new_member = await member.signupData(data);
 
-
+        req.session.member = new_member;
+        res.redirect('/resto/products/menu')
         // SESSION
 
-
-
-        res.json({state: "succeed", data: new_member});
+        // res.json({state: "succeed", data: new_member});
     }catch (err) {
         console.log(`ERROR, cont/signup, ${err.message}`);
         res.json({state: "fail", message: err.message});
@@ -50,7 +66,14 @@ restaurantController.loginProcess = async (req, res) => {
         member = new Member(),
         result = await member.loginData(data);
 
-        res.json({state: "succeed", data: result});
+
+        req.session.member = result;
+        req.session.save(function(){
+            res.redirect('/resto/products/menu');
+        });
+
+
+        // res.json({state: "succeed", data: result});
     }catch (err) {
         console.log(`ERROR, cont/login, ${err.message}`);
         res.json({state: "fail", message: err.message});
