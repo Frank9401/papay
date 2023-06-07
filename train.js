@@ -38,7 +38,38 @@
 //   return a < b ? -1 : 1;
 // });
 
-
-
-
 // } 
+
+
+
+
+// function Solution (n) {
+//     let a = String(n);
+//     const arr = [...a];
+//     const arr2 =[];
+
+//     arr.sort();
+//     arr.reverse();
+
+//     arr2.push(Number(arr.join('')));
+
+//     return arr2[0];
+// }
+
+
+
+   function findDigits(str) {
+    let digits = '';
+    
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charAt(i);
+      
+      if (/[0-9]/.test(char)) {
+        digits += char;
+      }
+    }
+    
+    return digits;
+  }
+  
+  console.log(findDigits('ad5we34jkf89'));
