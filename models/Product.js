@@ -2,6 +2,7 @@ const assert = require("assert");
 const { shapeIntoMongooseObjectId } = require("../lib/config");
 const Definer = require("../lib/mistakes");
 const ProductModel = require("../schema/product.model");
+const updateChosenProduct  = require("../controllers/productController");
 
 class Product {
   constructor() {
@@ -17,6 +18,28 @@ class Product {
 
       assert.ok(result, Definer.product_err1);
       return result;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+
+async updateChosenProductData(id, updated_date, mb_id) {
+    try {
+      id = shapeIntoMongooseObjectId(id);
+      mb_id = shapeIntoMongooseObjectId(mb_id);
+
+      const result = await this.productModel
+      .findOneAndUpdate ({ _id: id, restaurant_mb_id: mb_id},updated_date,{
+        runValidators: true, 
+        lean: true, 
+        returnDocument: "after",
+    })
+
+    .exec();
+
+    assert.ok(result, Definer.general_err1);
+    return result;
     } catch (err) {
       throw err;
     }
