@@ -2,12 +2,27 @@ const assert = require("assert");
 const { shapeIntoMongooseObjectId } = require("../lib/config");
 const Definer = require("../lib/mistakes");
 const ProductModel = require("../schema/product.model");
-const updateChosenProduct  = require("../controllers/productController");
+const updateChosenProduct = require("../controllers/productController");
 
 class Product {
   constructor() {
     this.productModel = ProductModel;
   }
+
+  async getAllProductsDataResto(member) {
+    try {
+        const result = await this.productModel.find({
+            restaruant_mb_id: member._id
+        });
+        assert.ok(result, Definer.general_err1);
+       
+        return result;
+    } catch(err) {
+        throw err;
+    }
+  }
+
+
 
   async addNewProductData(data, member) {
     try {
@@ -23,23 +38,22 @@ class Product {
     }
   }
 
-
-async updateChosenProductData(id, updated_date, mb_id) {
+  async updateChosenProductData(id, updated_date, mb_id) {
     try {
       id = shapeIntoMongooseObjectId(id);
       mb_id = shapeIntoMongooseObjectId(mb_id);
 
       const result = await this.productModel
-      .findOneAndUpdate ({ _id: id, restaurant_mb_id: mb_id},updated_date,{
-        runValidators: true, 
-        lean: true, 
-        returnDocument: "after",
-    })
+        .findOneAndUpdate({ _id: id, restaurant_mb_id: mb_id }, updated_date, {
+          runValidators: true,
+          lean: true,
+          returnDocument: "after",
+        })
 
-    .exec();
+        .exec();
 
-    assert.ok(result, Definer.general_err1);
-    return result;
+      assert.ok(result, Definer.general_err1);
+      return result;
     } catch (err) {
       throw err;
     }
