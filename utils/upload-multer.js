@@ -3,7 +3,7 @@ const multer = require('multer');
 const uuid = require('uuid');
 
 
-/** MULTER IMAGE UPLOADER */
+// /** MULTER IMAGE UPLOADER */
 
 function getTargetImageStorage(address) {
     return multer.diskStorage ( {
@@ -23,10 +23,10 @@ function getTargetImageStorage(address) {
 const makeUploader = (address) => {
     const storage = getTargetImageStorage(address);
     return multer({storage: storage})
-}
-
-
+};
 module.exports = makeUploader;
+
+
 
 // const product_storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
@@ -35,8 +35,14 @@ module.exports = makeUploader;
 //     filename: function(req, file, cb){
 //         console.log(file);
 //         const extension = path.parse(file.originalname).ext;
+
+//         //check formats
+
 //         const random_name = uuid.v4() + extension;
 //         cb(null, random_name);
 //     },
 // });
 // module.exports.uploadProductImage = multer({storage: product_storage});
+
+
+
