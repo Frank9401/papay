@@ -1,4 +1,3 @@
-// module.exports = app;
 console.log("Web Server boshlash");
 const express = require("express");
 const app = express();
@@ -40,7 +39,7 @@ app.use(function (req, res, next) {
   // restarantga tegishli bulgan member datalarni res.locals.member deb save qilyapmiz
   // res.locals deb undan keyin . quyib maxsus variable joylasak 
   // browserda member qabul qilamiz va har bir keladigan resga memberni beradi va biz uni homepagedan uqib olasmiz
-  
+
   next();
 });
 
