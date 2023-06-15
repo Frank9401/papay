@@ -17,7 +17,7 @@ const store = new MongoDBStore({
 });
 
 // 1 express ga kirib kelyatgan malumotlarga bogliq bolgan kodlar yoziladi. KIRISH kodlari
-app.use(express.static("public"));
+app.use(express.static("public"));   // public ichidagi folderlarni ochib beryapti
 app.use(express.json()); // kirib kelyatgan json formatdagi data ni objectga ogiradi
 app.use(express.urlencoded({ extended: true })); //html forumdan request qiladi
 
@@ -36,7 +36,11 @@ app.use(
 );
 
 app.use(function (req, res, next) {
-  res.locals.member = req.session.member;
+  res.locals.member = req.session.member;   
+  // restarantga tegishli bulgan member datalarni res.locals.member deb save qilyapmiz
+  // res.locals deb undan keyin . quyib maxsus variable joylasak 
+  // browserda member qabul qilamiz va har bir keladigan resga memberni beradi va biz uni homepagedan uqib olasmiz
+  
   next();
 });
 

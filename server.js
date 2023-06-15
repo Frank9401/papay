@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 
-const http = require("http")
+const http = require("http") //da pastda server yasayapmiz 
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', true);
 

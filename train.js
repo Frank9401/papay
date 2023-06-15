@@ -95,23 +95,34 @@
 // };
 
 
-const magazine = "Lorem kill ipsum dolor sit amet, consecctuter adipiscing elit, yu sed do eid";
-const note = "dolor kill you";
-const result = canMurderWrite(note, magazine);
-console.log("Can the killer write the note?", result);
+// const magazine = "Lorem kill ipsum dolor sit amet, consecctuter adipiscing elit, yu sed do eid";
+// const note = "dolor kill you";
+// const result = canMurderWrite(note, magazine);
+// console.log("Can the killer write the note?", result);
 
-function canMurderWrite(note, magazine) {
-  const noteLetters = note.replace(/[^a-z]/g, '');
-  const magazineLetters = magazine.replace(/[^a-z]/g, '').split('');
+// function canMurderWrite(note, magazine) {
+//   const noteLetters = note.replace(/[^a-z]/g, '');
+//   const magazineLetters = magazine.replace(/[^a-z]/g, '').split('');
 
-  for (const letter of noteLetters) {
-    const index = magazineLetters.indexOf(letter);
-    if (index === -1) {
-      return false; 
-    }
-    magazineLetters.splice(index, 1);
-  }
+//   for (const letter of noteLetters) {
+//     const index = magazineLetters.indexOf(letter);
+//     if (index === -1) {
+//       return false; 
+//     }
+//     magazineLetters.splice(index, 1);
+//   }
 
-  return true; 
-};
+//   return true; 
+// };
 
+
+
+console.log("Jack Ma maslaxatlari");
+const list= [
+  "yaxshi talaba buling",
+  "tugri boshliq tanlang va kupro xato qiling",
+  "uzingizga ishlashni boshlang",
+  "siz kuychli narsalarni qiling",
+  "yoshlarga investitsiya qiling",
+  "endi dam oling, foydasi yuq endi",
+];

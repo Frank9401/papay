@@ -5,7 +5,7 @@ const {
   ordernary_enums,
 } = require("../lib/config");
 
-const memberSchema = new mongoose.Schema(
+const memberSchema = new mongoose.Schema(    //mongoose.schemadan 
   {
     mb_nick: {
       type: String,

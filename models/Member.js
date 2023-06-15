@@ -5,8 +5,10 @@ const bcrypt = require ("bcryptjs");
 
 class Member {
     constructor () {
-        this.memberModel = MemberModel;
+        this.memberModel = MemberModel;   //member.Model objectni mongoose.Schema classdan olindi
     }
+
+    // classni ichida metod boshladik
 
     async signupData(input) {
         try {
@@ -35,7 +37,7 @@ class Member {
     async loginData(input) {
         try {
             const member = await this.memberModel
-            .findOne(
+            .findOne( // static metod
                 {mb_nick: input.mb_nick}, 
                 {mb_nick: 1, mb_password: 1})
             .exec();
@@ -56,7 +58,7 @@ class Member {
                 mb_nick: input.mb_nick
             })
             .exec();
-
+            
             console.log("member:::", member);
         } catch(err) {
             throw err;

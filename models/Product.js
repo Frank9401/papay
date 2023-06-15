@@ -7,6 +7,7 @@ const updateChosenProduct = require("../controllers/productController");
 class Product {
   constructor() {
     this.productModel = ProductModel;
+    
   }
 
   async getAllProductsDataResto(member) {
