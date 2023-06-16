@@ -12,7 +12,8 @@ restaurantController.home = (req, res) => {
     res.render("home-page");
   } catch (err) {
     console.log(`ERROR, cont/home, ${err.message}`);
-    res.json({ state: "fail", message: err.message });
+    res.redirect('/resto');
+    // res.json({ state: "fail", message: err.message });
 }
 }
 
@@ -98,7 +99,7 @@ restaurantController.logout = (req, res) => {
   try {
     console.log("GET cont/logout");
     // res.send("logout sahifadasiz");
-    req.session.destroy(function(){
+    re.session.destroy(function(){
       res.redirect("/resto");
     });
 

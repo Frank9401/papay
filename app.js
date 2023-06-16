@@ -1,6 +1,6 @@
-console.log("Web Server boshlash");
+console.log("Web Server boshlash");  //
 const express = require("express");
-const app = express();
+const app = express();  //instint bu app 
 const router = require("./router.js");
 const router_bssr = require("./router_bssr.js");
 
