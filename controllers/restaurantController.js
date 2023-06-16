@@ -95,8 +95,19 @@ restaurantController.loginProcess = async (req, res) => {
 };
 
 restaurantController.logout = (req, res) => {
-  console.log("GET cont.logout");
-  res.send("logout sahifadasiz");
+  try {
+    console.log("GET cont/logout");
+    // res.send("logout sahifadasiz");
+    req.session.destroy(function(){
+      res.redirect("/resto");
+    });
+
+  }catch(err) {
+    console.log(`ERROR, cont/logoutProcess, ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+
+  }
+
 };
 
 restaurantController.validateAuthRestaurant = (req, res, next) => {
