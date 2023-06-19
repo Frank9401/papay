@@ -1,6 +1,6 @@
 <%- include('includes/header') %>
 
-<link rel="stylesheet" type="tesxt/css" href="/css/home.css" />
+<link rel="stylesheet" type="text/css" href="/css/home.css" />
 
 <body>
   <div class="group_name">
@@ -121,7 +121,7 @@
       </svg>
     </div>
   </div>
-
+  
   <script>
     function fitElementToParent(el, padding) {
         let timeout = null;
@@ -150,7 +150,7 @@
 
       let breathAnimation = anime({
         begin: function () {
-          for (var i = 0; i < pathLength; i++) {
+          for (let i = 0; i < pathLength; i++) {
             aimations.push(
               anime({
                 targets: spherePathEls[i],

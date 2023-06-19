@@ -9,21 +9,21 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: #463c2f;
+  background: #2c261e;
   align-items: center;
 }
 
 a {
-  text-decoration: none;
-  color: #000000;
+    text-decoration: none;
+    color: #000000;
 }
 
 .nav-item a {
-  color: #e3c08d;
+    color: #E3C08D;
 }
 
 .nav-item a .disabled {
-  color: #898071;
+    color: #898071;
 }
 
 .group_name {

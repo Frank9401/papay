@@ -125,7 +125,7 @@
             console.log(URL.createObjectURL(uploading_file));
             $('.upload_img_frame')
             .attr('src', URL.createObjectURL(uploading_file))
-            .addClass('success');
+            .addClass('success')
           }
           filename = uploading_file.name;
         }
@@ -134,9 +134,9 @@
     });
   });
     function validatedSignUpForm() {
-      const mb_nick = $(".mb_nick").val();  //inputni qiymatini olishda val() ishlatamiz
-      const mb_phone = $(".mb_phone").val();
-      const mb_password = $(".mb_password").val();
+      const mb_nick = $(".mb_nick").val();  //inputni(HTML val) qiymatini olishda val() ishlatamiz
+      const mb_phone = $(".mb_phone").val();  // frontend valudation  requirement
+      const mb_password = $(".mb_password").val();  //orqadagi 
       const mb_confir_password = $(".mb_confir_password").val();
       const restaurant_img = $('.restaurant_img').get(0).files[0] ?? null;
       if(
@@ -145,7 +145,7 @@
          mb_password == '' ||
          mb_confir_password == ''
        ) {
-        alert('Iltimos hamma malumotlarni kiriting');
+        alert('Iltimos hamma malumotlarni kiriting');   // confirm qiymat qaytaradi
        } else if (mb_password !== mb_confir_password) {
         alert(`Iltimos passwordni togri kiriting`);
        }
@@ -153,7 +153,8 @@
        if(!restaurant_img) {
         alert('Iltimos rasmni yuklang!');
        }
-      return true;    // test qilganda hamisha false bulmasa backendga zapros yuboradi
+      return true;    // test qilganda hamisha false bulmasa backendga zapros yuboradi false bulganda
+      // backendga suroq bermaydi
     }
   </script>
 

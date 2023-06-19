@@ -14,19 +14,20 @@ restaurantController.home = (req, res) => {
     console.log(`ERROR, cont/home, ${err.message}`);
     res.redirect('/resto');
     // res.json({ state: "fail", message: err.message });
-}
-}
+ }
+};
 
 restaurantController.getMyRestaurantProducts = async (req, res) => {
   try {
-    console.log("GET: cont/getMyRestaurantProduct");
+    console.log("GET: cont/getMyRestaurantProducts");
     const product = new Products();
     const data = await product.getAllProductsDataResto(res.locals.member);
     res.render("restaurant-menu", {restaurant_data: data});
     // const data = await product.res.render("restaurant-menu");
   } catch (err) {
-    console.log(`ERROR, cont/getMyRestaurantData, ${err.message}`);
-    res.json({ state: "fail", message: err.message });
+    console.log(`ERROR, cont/getMyRestaurantProducts, ${err.message}`);
+    // res.json({ state: "fail", message: err.message });
+    res.redirect("/resto");
   }
 };
 
@@ -99,12 +100,12 @@ restaurantController.logout = (req, res) => {
   try {
     console.log("GET cont/logout");
     // res.send("logout sahifadasiz");
-    re.session.destroy(function(){
+    req.session.destroy(function(){
       res.redirect("/resto");
     });
 
   }catch(err) {
-    console.log(`ERROR, cont/logoutProcess, ${err.message}`);
+    console.log(`ERROR, cont/logout, ${err.message}`);
     res.json({ state: "fail", message: err.message });
 
   }
