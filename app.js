@@ -22,17 +22,24 @@ app.use(express.urlencoded({ extended: true })); //html forumdan request qiladi
 
 //2: Session code
 // SID
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    cookies: {
-      maxAge: 1000 * 60 * 30, // for 30 minutes
-    },
-    store: store,
-    resave: true,
-    saveUnitialized: true,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     cookies: {
+//       maxAge: 1000 * 60 * 30, // for 30 minutes
+//     },
+//     store: store,
+//     resave: true,
+//     saveUnitialized: true,
+//   })
+// );
+
+app.use(session({
+  secret: '<session_secret>', 
+  resave: true, 
+  saveUninitialized: true,
+  maxAge: 3600000   // 1 hour (in milliseconds)
+})); 
 
 app.use(function (req, res, next) {
   res.locals.member = req.session.member;   

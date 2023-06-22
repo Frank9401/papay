@@ -138,7 +138,7 @@ restaurantController.validateAdmin = (req, res, next) => {
     next();
   } else {
   const html = `<script>
-                alert('Admin page: Permission denied!);
+                alert('Admin page: Permission denied!');
                 window.location.replace('/resto');
                 </script>`
 
@@ -147,14 +147,12 @@ restaurantController.validateAdmin = (req, res, next) => {
     }
   };
 
-
-
 restaurantController.getAllRestaurants = (req,res) => {
   try{
     console.log("GET cont/getAllRestaurants");
     //todo: hamma restaurantlarni DBdan chaqiramiz
 
-    res.render("all-restaurants")
+    res.render("all-restaurants");
 
   }catch(err) {
     console.log(`ERROR, cont/getAllRestaurants, ${err.message}`);
