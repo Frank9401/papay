@@ -147,7 +147,7 @@ restaurantController.validateAdmin = (req, res, next) => {
     }
   };
 
-restaurantController.getAllRestaurants = (req,res) => {
+restaurantController.getAllRestaurants = (req, res) => {
   try{
     console.log("GET cont/getAllRestaurants");
     //todo: hamma restaurantlarni DBdan chaqiramiz

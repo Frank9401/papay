@@ -41,5 +41,5 @@ router_bssr.get(
 restaurantController.validateAdmin,
 restaurantController.getAllRestaurants
 );
-
+ 
 module.exports = router_bssr;
