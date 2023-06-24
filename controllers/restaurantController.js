@@ -147,7 +147,7 @@ restaurantController.validateAdmin = (req, res, next) => {
     }
   };
 
-restaurantController.getAllRestaurants = (req,res) => {
+restaurantController.getAllRestaurants = (req, res) => {
   try{
     console.log("GET cont/getAllRestaurants");
     //todo: hamma restaurantlarni DBdan chaqiramiz
@@ -160,3 +160,15 @@ restaurantController.getAllRestaurants = (req,res) => {
   }
 };
 
+restaurantController.updateRestaurantByAdmin =  async(req, res) => {
+  try{
+    console.log("GET cont/updateRestaurantByAdmin");
+    const restaurant = new Restaurant();
+    const result = await restaurant.updateRestaurantByAdmin(req.body);
+    await res.json({state: "success", data: result});
+  }catch(err) {
+    console.log(`ERROR, cont/updateRestaurantByAdmin, ${err.message}`);
+    res.json({state: "fail", message: err.message});
+  }
+
+};
