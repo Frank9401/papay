@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const memberController = require("./controllers/memberController");
-
-
+const productController = require("./controllers/productController");
+const router_bssr = require("./router_bssr");
 
 /**********************************************
  *           REST API                         *
  **********************************************/
 
 
-//memberga dahldor routerlar
+//memberga related routers
 // router.get("./", memberController.home);
 router.post("/signup", memberController.signup);
 router.post("/login", memberController.login);
@@ -22,13 +22,24 @@ router.get(
       );
 
 
-//boshqa routerlar
-router.get("/menu", (req, res) => {
-    res.send("Menu sahifadasiz");
-});
+// Product related routers
+router.post(
+    "/products", 
+    memberController.retrieveAuthMember,
+    productController.getAllProducts,
+    );
 
-router.get("/community", (req, res) => {
-    res.send("Jamiyat sahifasidasiz");
-});
+
+
+//boshqa routerlar
+
+// router.get("/menu", function (req, res) {
+//     res.send("Menu sahifadasiz");
+// });
+
+// router.get("/community", function (req, res) {
+//     res.send("Jamiyat sahifasidasiz");
+// });
+
 
 module.exports = router;

@@ -21,7 +21,7 @@ async getAllRestaurantsData (){
     }
 }
 
-async updaterestaurantByAdminData (update_data){
+async updateRestaurantByAdminData (update_data){
     try {
     const id = shapeIntoMongooseObjectId(update_data?.id);
     const result = await this.memberModel 

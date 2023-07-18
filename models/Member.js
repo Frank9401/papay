@@ -54,7 +54,6 @@ class Member {
       id = shapeIntoMongooseObjectId(id);
 
       if (member) {
-        //condition if not seen before
         await this.viewChosenItemByMember(member, id, "member");
       }
 
