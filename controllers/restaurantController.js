@@ -1,4 +1,3 @@
-const { Script } = require("vm");
 const Definer = require("../lib/mistakes");
 const Member = require("../models/Member");
 const Products = require("../models/Product");
@@ -55,7 +54,7 @@ restaurantController.signupProcess = async (req, res) => {
       
       const member = new Member();
       const result = await member.signupData(new_member);
-      assert(result, Definer.general_err1);
+      assert(result, Definer.general_err3);
 
     req.session.member = result;
     res.redirect("/resto/products/menu");
@@ -73,7 +72,7 @@ restaurantController.getLoginMyRestaurant = async (req, res) => {
     console.log("GET: cont/getLoginMyRestaurant");
     res.render("login-page");
   } catch (err) {
-    console.log(`ERROR, cont/getLoginMyRestaurantt, ${err.message}`);
+    console.log(`ERROR, cont/getLoginMyRestaurant, ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };
@@ -151,7 +150,7 @@ restaurantController.validateAdmin = (req, res, next) => {
 
 restaurantController.getAllRestaurants = async (req, res) => {
   try{
-    console.log("GET cont/getAllRestaurants");
+    console.log("POST cont/getAllRestaurants");
 
     const restaurant = new Restaurant();
     const restaurants_data = await restaurant.getAllRestaurantsData();
@@ -166,11 +165,10 @@ restaurantController.getAllRestaurants = async (req, res) => {
 
 restaurantController.updateRestaurantByAdmin =  async (req, res) => {
   try{
-    console.log("GET cont/updateRestaurantByAdminData");
+    console.log("POST cont/updateRestaurantByAdminData");
     const restaurant = new Restaurant();
     const result = await restaurant.updateRestaurantByAdminData(req.body);
     await res.json({state: "success", data: result});
-
 
   }catch(err) {
     console.log(`ERROR, cont/updateRestaurantByAdminData, ${err.message}`);
