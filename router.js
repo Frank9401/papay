@@ -48,4 +48,12 @@ router.get(
   restaurantController.getChosenRestaurant
   );
 
+  // Order related routers
+
+  router.post(
+    "/orders/create",
+    memberController.retrieveAuthMember,
+    orderController.createOrder
+  );
+
 module.exports = router;
