@@ -2,6 +2,7 @@ const assert = require("assert")
 const MemberModel = require("../schema/member.model")
 const Definer = require("../lib/mistakes")
 const {shapeIntoMongooseObjectId} = require("../lib/config")
+const Member = require("./Member")
 
 class Restaurant {
   constructor() {
@@ -33,6 +34,7 @@ class Restaurant {
       }
       aggregationQuery.push({$skip: (data.page - 1) * data.limit})
       aggregationQuery.push({$limit: data.limit})
+
       //todo check auth member liked the chosen target
 
       const result = await this.memberModel.aggregate(aggregationQuery).exec()
@@ -42,6 +44,27 @@ class Restaurant {
       throw err
     }
   }
+
+  async getChosenRestaurantData(member, id) {
+    try {
+      id = shapeIntoMongooseObjectId(id)
+
+      if (member) {
+        const member_obj = new Member();
+        await member_obj.viewChosenItemByMember(member, id, "member")
+      }
+
+      const result = await this.memberModel.findOne({
+        _id: id,
+        mb_status: "ACTIVE"
+      }).exec()
+      assert.ok(result, Definer.general_err2)
+      return result;
+    } catch (error) {
+      throw error
+    }
+  }
+
 
   async getAllRestaurantsData() {
     try {

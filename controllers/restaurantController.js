@@ -20,6 +20,20 @@ restaurantController.getRestaurants = async (req, res) => {
   }
 }
 
+restaurantController.getChosenRestaurant = async (req, res) => {
+  try {
+    console.log("GET cont/getChosenRestaurant")
+    const id = req.params.id
+    const restaurant = new Restaurant();
+    const result = await restaurant.getChosenRestaurantData(req.member, id)
+    await res.json({ state: "success", data: result })
+  } catch (err) {
+    console.log(`Error, cont/getChosenRestaurant, ${err.message}`)
+    res.json({ state: "fail", message: err.message })
+
+  }
+}
+
 /*********************
  * BSSR related api *
  ********************/
@@ -30,8 +44,8 @@ restaurantController.home = (req, res) => {
     res.render("home-page");
   } catch (err) {
     console.log(`ERROR, cont/home, ${err.message}`);
-    res.redirect('/resto');
-    // res.json({ state: "fail", message: err.message });
+    // res.redirect('/resto');
+    res.json({ state: "fail", message: err.message });
  }
 };
 
@@ -40,12 +54,13 @@ restaurantController.getMyRestaurantProducts = async (req, res) => {
     console.log("GET: cont/getMyRestaurantProducts");
     const product = new Products();
     const data = await product.getAllProductsDataResto(res.locals.member);
+
     res.render("restaurant-menu", {restaurant_data: data});
     // const data = await product.res.render("restaurant-menu");
   } catch (err) {
     console.log(`ERROR, cont/getMyRestaurantProducts, ${err.message}`);
-    // res.json({ state: "fail", message: err.message });
-    res.redirect("/resto");
+    res.json({ state: "fail", message: err.message });
+    // res.redirect("/resto");
   }
 };
 
@@ -64,7 +79,7 @@ restaurantController.signupProcess = async (req, res) => {
     console.log("POST: cont/signupProcess");
     assert(req.file, Definer.general_err3);
 
-     let new_member = req.body;
+     const new_member = req.body;
      new_member.mb_type = 'RESTAURANT';
      new_member.mb_image = req.file.path;
       // console.log('body:::', req.body);
