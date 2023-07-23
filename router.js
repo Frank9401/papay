@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const memberController = require("./controllers/memberController");
 const productController = require("./controllers/productController");
+const orderController = require('./controllers/orderController')
 const restaurantController = require("./controllers/restaurantController");
+
 const router_bssr = require("./router_bssr");
 
 
@@ -54,6 +56,18 @@ router.get(
     "/orders/create",
     memberController.retrieveAuthMember,
     orderController.createOrder
+  );
+
+  router.get(
+    "/orders",
+  memberController.retrieveAuthMember,
+  orderController.getMyOrders
+  );
+
+  router.post(
+    "/orders/edit",
+  memberController.retrieveAuthMember,
+  orderController.editChosenOrder
   );
 
 module.exports = router;
