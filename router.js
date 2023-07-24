@@ -2,10 +2,13 @@ const express = require("express");
 const router = express.Router();
 const memberController = require("./controllers/memberController");
 const productController = require("./controllers/productController");
-const orderController = require('./controllers/orderController')
+const orderController = require('./controllers/orderController');
 const restaurantController = require("./controllers/restaurantController");
+const communityController = require('./controllers/communityController');
+const uploader_community = require("./utils/upload-multer")('community');
 
 const router_bssr = require("./router_bssr");
+const uploader_member = require("./utils/upload-multer")('members');
 
 
 
@@ -51,7 +54,6 @@ router.get(
   );
 
   // Order related routers
-
   router.post(
     "/orders/create",
     memberController.retrieveAuthMember,
@@ -70,4 +72,17 @@ router.get(
   orderController.editChosenOrder
   );
 
+  //community related routers
+router.post(
+  "/community/image",
+uploader_community.single("community_image"),
+communityController.imageInsertion
+);
+
 module.exports = router;
+
+router.post(
+  "/community/create",
+  memberController.retrieveAuthMember,
+  communityController.createArticle
+  );
