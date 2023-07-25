@@ -79,10 +79,23 @@ uploader_community.single("community_image"),
 communityController.imageInsertion
 );
 
-module.exports = router;
 
 router.post(
   "/community/create",
   memberController.retrieveAuthMember,
   communityController.createArticle
   );
+
+  router.get(
+    "/community/articles",
+  memberController.retrieveAuthMember,
+  communityController.getMemberArticles
+);
+
+router.get(
+  "/community/target",
+  memberController.retrieveAuthMember,
+  communityController.getArticles
+);
+
+  module.exports = router;
