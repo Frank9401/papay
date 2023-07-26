@@ -19,6 +19,7 @@ communityController.imageInsertion = async (req, res) => {
 communityController.createArticle = async (req, res) => {
     try {
         console.log("Post: cont/createArticle");
+        assert.ok(result, Definer.auth_err1);
 
         const community = new Community();
         const result = await community.createArticleData(req.member, req.body);
@@ -61,6 +62,19 @@ communityController.getArticles = async (req, res) => {
         res.json({ state: "success", data: result })
     } catch (err) {
         console.log(`Error, cont/getArticles, ${err.message}`)
+        res.json({ state: "failed", message: err.message })
+    }
+}
+
+communityController.getChosenArticle = async (req, res) => {
+    try {
+        console.log("Post: cont/getChosenArticle");
+        const art_id = req.params.art_id,
+            community = new Community(),
+            result = await community.getChosenArticlesData(req.member, art_id)
+        res.json({ state: "success", data: result })
+    } catch (err) {
+        console.log(`Error, cont/getChosenArticle, ${err.message}`)
         res.json({ state: "failed", message: err.message })
     }
 };

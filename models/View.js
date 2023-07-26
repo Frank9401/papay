@@ -1,6 +1,7 @@
 const MemberModel = require("../schema/member.model");
 const ProductModel = require("../schema/product.model");
 const ViewModel = require("../schema/view.model");
+const BoArticleModel = require("../schema/bo_article.model");
 
 class View {
   constructor(mb_id) {
@@ -8,6 +9,7 @@ class View {
     this.memberModel = MemberModel;
     this.productModel = ProductModel;
     this.mb_id = mb_id;
+    this.boArticleModel = BoArticleModel;
   }
 
   async validateChosenTarget(view_ref_id, group_type) {
@@ -25,9 +27,15 @@ class View {
         case "product":
           result = await this.productModel
             .findOne({
-            _id: view_ref_id,
-            product_status: "PROCESS"
-          }).exec();
+              _id: view_ref_id,
+              product_status: "PROCESS"
+            }).exec();
+        case "community":
+          result = await this.boArticleModel
+            .findOne({
+              _id: view_ref_id,
+              art_status: "active"
+            }).exec();
       }
       return !!result;
     } catch (err) {
@@ -66,6 +74,14 @@ class View {
             .findByIdAndUpdate(
               { _id: view_ref_id },
               { $inc: { product_views: 1 } }
+            )
+            .exec();
+          break;
+          case "community":
+          await this.boArticleModel
+            .findByIdAndUpdate(
+              { _id: view_ref_id },
+              { $inc: { art_views: 1 } }
             )
             .exec();
           break;
