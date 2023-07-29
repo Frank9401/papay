@@ -5,6 +5,7 @@ const productController = require("./controllers/productController");
 const orderController = require('./controllers/orderController');
 const restaurantController = require("./controllers/restaurantController");
 const communityController = require('./controllers/communityController');
+const followController = require('./controllers/followController')
 const uploader_community = require("./utils/upload-multer")('community');
 
 const router_bssr = require("./router_bssr");
