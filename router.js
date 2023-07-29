@@ -105,4 +105,10 @@ router.get(
   communityController.getChosenArticle
 );
 
+//following related routers
+router.post("/follow/subscribe",
+  memberController.retrieveAuthMember,
+  followController.subscribe
+);
+
   module.exports = router;
