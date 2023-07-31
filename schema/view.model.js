@@ -14,7 +14,7 @@ const viewSchema = new mongoose.Schema(
     },
     bo_id: {
       type: String,
-      required: true,
+      required: false,
       enum: {
         values: board_id_enum_list,
       },
