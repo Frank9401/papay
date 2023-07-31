@@ -25,7 +25,13 @@ router.get("/logout", memberController.logout);
 router.get("/check-me", memberController.checkMyAuthentication)
 router.get("/member/:id", 
 memberController.retrieveAuthMember,
-memberController.getChosenMember)
+memberController.getChosenMember
+);
+
+router.post("/member-liken",
+  memberController.retrieveAuthMember,
+  memberController.likeMemberChosen
+);
 
 
 //product related products

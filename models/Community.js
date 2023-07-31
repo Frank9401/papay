@@ -27,7 +27,7 @@ class Community {
             return await article.save();
         } catch (error) {
             console.log(error);
-            throw new Error(Definer.auth_err1);
+            throw new Error(Definer.mongo_validation_error);
         }
     }
     async getMemberArticlesData(member, mb_id, inquiry) {

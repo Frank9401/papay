@@ -30,6 +30,7 @@ class View {
               _id: view_ref_id,
               product_status: "PROCESS"
             }).exec();
+            break;
         case "community":
           result = await this.boArticleModel
             .findOne({

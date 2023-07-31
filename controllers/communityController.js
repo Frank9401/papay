@@ -19,7 +19,7 @@ communityController.imageInsertion = async (req, res) => {
 communityController.createArticle = async (req, res) => {
     try {
         console.log("Post: cont/createArticle");
-        assert.ok(result, Definer.auth_err1);
+        assert.ok(result, Definer.mongo_validation_error);
 
         const community = new Community();
         const result = await community.createArticleData(req.member, req.body);
