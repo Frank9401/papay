@@ -90,7 +90,7 @@ const productSchema = new mongoose.Schema(
     restaruant_mb_id: {
       type: Schema.Types.ObjectId,
       ref: "Member",
-      required: false,
+      required: true,
     },
   },
   { timestamps: true }

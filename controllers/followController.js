@@ -16,7 +16,7 @@ followController.subscribe = async (req, res) => {
         console.log(`ERROR, cont/subscribe, ${error.message}`);
         res.json({ state: "fail", message: error.message });
     }
-}
+};
 followController.unsubscribe = async (req, res) => {
     try {
         console.log(`POST: cont/unsubscribe`);
@@ -30,4 +30,16 @@ followController.unsubscribe = async (req, res) => {
         console.log(`ERROR, cont/unsubscribe, ${error.message}`);
         res.json({ state: "fail", message: error.message });
     }
-}
+};
+followController.getMemberFollowings = async (req, res) => {
+    try {
+        console.log(`POST: cont/getMemberFollowings`);
+        const follow = new Follow();
+
+        const result = await follow.getMemberFollowingsData(req.query);
+        res.json({ state: "success", data: result })
+    } catch (error) {
+        console.log(`ERROR, cont/getMemberFollowings, ${error.message}`);
+        res.json({ state: "fail", message: error.message });
+    }
+};

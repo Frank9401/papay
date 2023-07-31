@@ -10,7 +10,7 @@ const orderItemSchema = new mongoose.Schema(
     product_id: {
       type: Schema.Types.ObjectId,
       ref: "Product",
-      required: false
+      required: true
     }
   },
   { timestamps: { createdAt: true } }

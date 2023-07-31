@@ -7,7 +7,11 @@ const orderSchema = new mongoose.Schema(
     order_total_amount: { type: Number, required: true },
     order_delivery_cost: { type: Number, required: true },
     order_status: { type: String, required: false, default: "PAUSED", enums: { values: order_status_enums }, message: "{VALUE} is not among permitted values" },
-    mb_id: {}
+    mb_id: {
+      type: Schema.Types.ObjectId,
+      ref: "Member",
+      required: true,
+    }
   },
   { timestamps: { createdAt: true } }
 );
