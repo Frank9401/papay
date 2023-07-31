@@ -30,12 +30,12 @@ class Community {
             throw new Error(Definer.auth_err1);
         }
     }
-    async getMemberArticlesData(member, mb_id, inquery) {
+    async getMemberArticlesData(member, mb_id, inquiry) {
         try {
             const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
             mb_id = shapeIntoMongooseObjectId(mb_id);
-            const page = inquery['page'] ? inquery['page'] * 1 : 1;
-            const limit = inquery['limit'] ? inquery['limit'] * 1 : 5;
+            const page = inquiry['page'] ? inquiry['page'] * 1 : 1;
+            const limit = inquiry['limit'] ? inquiry['limit'] * 1 : 5;
 
             const result = await this.boArticleModel.aggregate([
                 { $match: { mb_id: mb_id, art_status: "active" } },
