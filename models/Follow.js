@@ -144,7 +144,6 @@ class Follow {
           }
         },
         { $unwind: '$subscriber_member_data' },
-        { $unset: 'subscriber_member_data.mb_password' }
       ];
 
       if (member && member._id === inquiry.mb_id) {
