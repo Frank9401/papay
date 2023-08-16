@@ -50,7 +50,7 @@ class Product {
 
       if(member){
         const member_obj = new Member();
-        member_obj.viewChosenItemByMember(member, id, "product");
+        await member_obj.viewChosenItemByMember(member, id, "product");
       }
 
       const result = await this.productModel.aggregate([
@@ -59,7 +59,7 @@ class Product {
       ]).exec();
 
       assert.ok(result, Definer.general_err1);
-      return result;
+      return result[0];
     } catch (error) {
       throw error;
     }
